@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGenerator.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Image Gallery"
+                FontSize="26"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+            
+            <Image
+                x:Name="ShowGallery"
+                HeightRequest="240"
+                Aspect="AspectFit"
+                SemanticProperties.Description="randomm image gallery" />
+
+            <Label
+                x:Name="ImageText"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+            
+            <ImageButton x:Name="FavoriteButton"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     BackgroundColor="Transparent"
+                     Clicked="OnFavoriteClicked">
+                <ImageButton.Source>
+                    
+                    <FontImageSource Glyph="&#xE87E;"
+                                 FontFamily="MaterialIcons"
+                                 Size="32"
+                                 Color="Gray"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Button
+                Text="Ny bild" 
+                SemanticProperties.Hint="showes a new image when you click"
+                Clicked="ImageOnClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
