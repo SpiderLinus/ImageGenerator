@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
 
 namespace ImageGenerator
 {
@@ -32,14 +30,11 @@ namespace ImageGenerator
 
         private void ShowImageAndText()
         {
-
-            //var singleKeys = ImageList.Keys.ToList(); // en lokal lista av det första paret i en Dictionary
-
             var pairs = ImageList.ElementAt(random.Next(ImageList.Count));
 
             Debug.WriteLine(pairs.Key + ": " + pairs.Value); // för testning i Output
 
-            string showKey = GetImageFileEnding(pairs.Key); // detta då enbart Windows kräver filändelse
+            string showKey = GetImageFileEnding(pairs.Key); // detta då Windows, men inte till exempel Android, kräver filändelse
 
             ShowGallery.Source = showKey;
 
@@ -54,7 +49,6 @@ namespace ImageGenerator
             return imageKey;
             #endif
         }
-
 
         private void OnFavoriteClicked(object sender, EventArgs e)
         {
@@ -81,11 +75,5 @@ namespace ImageGenerator
                 };
             }
         }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected void OnPropertyChanged([CallerMemberName] string name = null)
-        //    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
     }
 }
