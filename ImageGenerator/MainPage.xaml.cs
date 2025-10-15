@@ -6,6 +6,10 @@ namespace ImageGenerator
 {
     public partial class MainPage : ContentPage
     {
+
+        /// <summary>
+        /// List created with 5 items, to be shown randomly on button click.
+        /// </summary>
         static private bool _isFavorite;
 
         private Dictionary<string, string> ImageList = new()
@@ -16,7 +20,7 @@ namespace ImageGenerator
                 {"image4", "Autumn road" },
                 {"image5", "Flowergirl" }
             };
-
+        
 
         private Random random = new();
 
