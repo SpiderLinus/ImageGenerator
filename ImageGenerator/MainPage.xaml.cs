@@ -23,6 +23,7 @@ namespace ImageGenerator
         public MainPage()
         {
             InitializeComponent();
+            // a comment
         }
 
         private void ImageOnClicked(object? sender, EventArgs e)
