@@ -12,14 +12,15 @@ namespace ImageGenerator
         /// </summary>
         static private bool _isFavorite;
 
-        private Dictionary<string, string> ImageList = new()
-            {
-                {"image1", "Man" },
-                {"image2", "Bird" },
-                {"image3", "Big cat" },
-                {"image4", "Autumn road" },
-                {"image5", "Flowergirl" }
-            };
+        
+        List<Image> images = new List<Image>()
+        {
+                new Image("image1", "Man" ),
+                new Image("image2", "Bird" ),
+                new Image("image3", "Big cat" ),
+                new Image("image4", "Autumn road" ),
+                new Image("image5", "Flowergirl")
+        };
         
 
         private Random random = new();
@@ -39,7 +40,7 @@ namespace ImageGenerator
 
             //var singleKeys = ImageList.Keys.ToList(); // en lokal lista av det första paret i en Dictionary
 
-            var pairs = ImageList.ElementAt(random.Next(ImageList.Count));
+            var pairs = images.ElementAt(random.Next(images.Count));
 
             Debug.WriteLine(pairs.Key + ": " + pairs.Value); // för testning i Output
 
@@ -85,5 +86,16 @@ namespace ImageGenerator
                 };
             }
         }
+
+        public class Image
+            {
+                public string Key { get; set; }
+                public string Value { get; set; }
+                public Image(string key, string value)
+                {
+                    Key = key;
+                    Value = value;
+                }
+            }
     }
 }
