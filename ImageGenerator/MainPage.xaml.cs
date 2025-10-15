@@ -27,7 +27,6 @@ namespace ImageGenerator
         public MainPage()
         {
             InitializeComponent();
-            // a comment
         }
 
         private void ImageOnClicked(object? sender, EventArgs e)
@@ -86,11 +85,5 @@ namespace ImageGenerator
                 };
             }
         }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected void OnPropertyChanged([CallerMemberName] string name = null)
-        //    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
     }
 }
