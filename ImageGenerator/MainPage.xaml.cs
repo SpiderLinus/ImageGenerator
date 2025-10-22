@@ -19,7 +19,12 @@ namespace ImageGenerator
                 new Image("image2", "Bird" ),
                 new Image("image3", "Big cat" ),
                 new Image("image4", "Autumn road" ),
-                new Image("image5", "Flowergirl")
+                new Image("image5", "Flowergirl"),
+                new Image("image6", "Lightbulb"),
+                new Image("image7", "Blue dice" ),
+                new Image("image8", "Apple" ),
+                new Image("image9", "Illusion" ),
+                new Image("image10", "Dog" )
         };
         
 
