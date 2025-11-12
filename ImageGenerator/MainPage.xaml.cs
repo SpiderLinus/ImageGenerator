@@ -1,25 +1,35 @@
-﻿using System.Diagnostics;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ImageGenerator
 {
     public partial class MainPage : ContentPage
     {
-        static private bool _isFavorite;
+        private Image? pairs;
 
-        private Dictionary<string, string> ImageList = new()
-            {
-                {"image1", "Man" },
-                {"image2", "Bird" },
-                {"image3", "Big cat" },
-                {"image4", "Autumn road" },
-                {"image5", "Flowergirl" }
-            };
+        /// <summary>
+        /// List created with 5 items, to be shown randomly on button click.
+        /// </summary>
+        
 
+        
+        List<Image> images = new List<Image>()
+        {
+                new Image("image1", "Man" ),
+                new Image("image2", "Bird" ),
+                new Image("image3", "Big cat" ),
+                new Image("image4", "Autumn road" ),
+                new Image("image5", "Flowergirl")
+        };
+        
 
         private Random random = new();
 
         public MainPage()
         {
+            
             InitializeComponent();
         }
 
@@ -30,7 +40,10 @@ namespace ImageGenerator
 
         private void ShowImageAndText()
         {
-            var pairs = ImageList.ElementAt(random.Next(ImageList.Count));
+
+            //var singleKeys = ImageList.Keys.ToList(); // en lokal lista av det första paret i en Dictionary
+
+            pairs = images.ElementAt(random.Next(images.Count));
 
             Debug.WriteLine(pairs.Key + ": " + pairs.Value); // för testning i Output
 
@@ -39,6 +52,16 @@ namespace ImageGenerator
             ShowGallery.Source = showKey;
 
             ImageText.Text = pairs.Value;
+
+
+
+            FavoriteButton.Source = new FontImageSource
+            {
+                Glyph = pairs.IsFavorite ? "\ue87d" : "\ue87e",
+                FontFamily = "MaterialIcons",
+                Size = 32,
+                Color = pairs.IsFavorite ? Colors.Red : Colors.Gray
+            };
         }
 
         private string GetImageFileEnding(string imageKey)
@@ -52,28 +75,38 @@ namespace ImageGenerator
 
         private void OnFavoriteClicked(object sender, EventArgs e)
         {
-            _isFavorite = !_isFavorite;
+            
 
-            if (_isFavorite)
-            {
+                if (pairs == null)
+            
+                return;
+
+                pairs.IsFavorite = !pairs.IsFavorite;
+
+
                 FavoriteButton.Source = new FontImageSource
                 {
-                    Glyph = "\ue87d",
+                    Glyph = pairs.IsFavorite ? "\ue87d" : "\ue87e",
                     FontFamily = "MaterialIcons",
                     Size = 32,
-                    Color = Colors.Red
+                    Color = pairs.IsFavorite ? Colors.Red : Colors.Gray
                 };
-            }
-            else
-            {
-                FavoriteButton.Source = new FontImageSource
-                {
-                    Glyph = "\ue87e",
-                    FontFamily = "MaterialIcons",
-                    Size = 32,
-                    Color = Colors.Gray
-                };
-            }
+            
+           
+            
         }
+
+        public class Image
+            {
+                public string Key { get; set; }
+                public string Value { get; set; }
+                public bool IsFavorite { get; set; }
+            public Image(string key, string value)
+            {
+                    Key = key;
+                    Value = value;
+                    IsFavorite = false;
+            }
+            }
     }
 }
